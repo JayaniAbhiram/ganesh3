@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Ganesh Chaturthi Gallery</title>
+  <title>Ganesh Chaturthi Gallery: Aagman & Nimarjanam</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -14,9 +14,9 @@
     .filter-btn.active, .filter-btn:hover { background: #d35400; color: white; }
     .gallery-img { transition: transform 0.3s, box-shadow 0.3s; border: 3px solid #ffe0b2; border-radius: 12px; }
     .gallery-img:hover { transform: scale(1.05); box-shadow: 0 0 12px #ffcc80; }
-    #imageOverlay { display: none; position: fixed; z-index: 9999; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.9); justify-content: center; align-items: center; }
-    #imageOverlay img { max-width: 90%; max-height: 90%; border: 6px solid #fff; border-radius: 10px; box-shadow: 0 0 25px #ffd700; }
-    #closeOverlay { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer; z-index: 10000; text-shadow: 0 0 10px #ffd54f; }
+    #imageOverlay { display: none; position: fixed; z-index: 9999; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.9); justify-content: center; align-items: center;}
+    #imageOverlay img { max-width: 90%; max-height: 90%; border: 6px solid #fff; border-radius: 10px; box-shadow: 0 0 25px #ffd700;}
+    #closeOverlay { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 30px; font-weight: bold; cursor: pointer; z-index: 10000; text-shadow: 0 0 10px #ffd54f;}
     .gallery-caption { color: #935117; font-size: 13px; margin-top: 3px; text-align: center;}
   </style>
 </head>
@@ -27,9 +27,7 @@
     <div class="filter-bar mb-4">
       <button class="filter-btn active" data-category="all">All</button>
       <button class="filter-btn" data-category="aagman">Aagman</button>
-      <button class="filter-btn" data-category="activities">Activities</button>
       <button class="filter-btn" data-category="nimarjanam">Nimarjanam</button>
-      <button class="filter-btn" data-category="pooja">Pooja</button>
     </div>
     <div class="row g-3 justify-content-center" id="galleryRow"></div>
   </div>
@@ -40,13 +38,27 @@
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    let galleryImages = [];
+    // List of all images for Aagman and Nimarjanam:
+    const galleryImages = [
+      // AAGMAN IMAGES
+      { src: "images/Aagman/PHOTO-2024-09-05-14-18-49 2.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-18-49 2.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-18-53.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-18-53.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-18-55.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-18-55.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-18-56.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-18-56.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-18-57.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-18-57.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-19-01.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-19-01.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-19-02.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-19-02.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-19-08 2.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-19-08 2.jpg" },
+      { src: "images/Aagman/PHOTO-2024-09-05-14-19-08.jpg", category: "aagman", name: "PHOTO-2024-09-05-14-19-08.jpg" },
+
+      // NIMARJANAM IMAGES
+      { src: "images/Nimarjanam/PHOTO-2024-09-05-14-18-49.jpg", category: "nimarjanam", name: "PHOTO-2024-09-05-14-18-49.jpg" }
+    ];
     const galleryRow = document.getElementById('galleryRow');
     function renderImages(category = "all") {
       galleryRow.innerHTML = "";
-      galleryImages.forEach(({ src, category: cat, name, type }) => {
-        // Only render images!
-        if ((type === "image") && (category === "all" || category === cat)) {
+      galleryImages.forEach(({ src, category: cat, name }) => {
+        if (category === "all" || category === cat) {
           const col = document.createElement("div");
           col.className = "col-6 col-sm-4 col-md-3 col-lg-2";
           const img = document.createElement("img");
@@ -77,9 +89,7 @@
         renderImages(btn.getAttribute("data-category"));
       });
     });
-    fetch('gallery-list.php')
-      .then(response => response.json())
-      .then(data => { galleryImages = data; renderImages(); });
+    renderImages(); // Initial load
   </script>
 </body>
 </html>
