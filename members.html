@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Carousel Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #fffef5;
+    }
+
+    .section-header {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #ff9800, #e65100, #ffd54f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      padding: 30px 10px 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      animation: fadeInHeader 2s ease-in-out;
+    }
+
+    @keyframes fadeInHeader {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .carousel-container {
+      width: 100%;
+      overflow: hidden;
+      background: #fffbe7;
+      border-top: 2px solid #f5d142;
+      border-bottom: 2px solid #f5d142;
+      padding: 10px 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      animation: scrollGallery 2s linear infinite;
+    }
+
+    .carousel-track img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      margin: 0 10px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    @keyframes scrollGallery {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎉 Header Title -->
+  <div class="section-header">గోల్డ్ ఫేజ్ సహకారులు</div>
+
+  <!-- 🔁 Image Carousel -->
+  <div class="carousel-container">
+    <div class="carousel-track" id="carousel">
+      <img src="https://images.pexels.com/photos/32848029/pexels-photo-32848029.jpeg" alt="Ganesh">
+      <img src="https://images.pexels.com/photos/220116/pexels-photo-220116.jpeg" alt="Flowers">
+      <img src="https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg" alt="Festival">
+      <img src="https://images.pexels.com/photos/1078958/pexels-photo-1078958.jpeg" alt="Lights">
+      <img src="https://images.pexels.com/photos/1054651/pexels-photo-1054651.jpeg" alt="Statue">
+      <img src="https://images.pexels.com/photos/32848029/pexels-photo-32848029.jpeg" alt="Ganesh">
+      <img src="https://images.pexels.com/photos/220116/pexels-photo-220116.jpeg" alt="Flowers">
+      <img src="https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg" alt="Festival">
+      <img src="https://images.pexels.com/photos/1078958/pexels-photo-1078958.jpeg" alt="Lights">
+      <img src="https://images.pexels.com/photos/1054651/pexels-photo-1054651.jpeg" alt="Statue">
+    </div>
+  </div>
+
+
+
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <div id="whatsapp-placeholder"></div>
+  <script>
+    fetch('whatsapp.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('whatsapp-placeholder').innerHTML = data;
+      });
+  </script>
+
+</body>
+</html>
