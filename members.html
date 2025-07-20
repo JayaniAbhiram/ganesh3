@@ -6,12 +6,10 @@
   <title>Auto Carousel Gallery</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: Arial, sans-serif;
       background: #fffef5;
     }
-
     .section-header {
       text-align: center;
       font-size: 2rem;
@@ -23,18 +21,10 @@
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
       animation: fadeInHeader 2s ease-in-out;
     }
-
     @keyframes fadeInHeader {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
-
     .carousel-container {
       width: 100%;
       overflow: hidden;
@@ -43,12 +33,12 @@
       border-bottom: 2px solid #f5d142;
       padding: 10px 0;
     }
-
     .carousel-track {
       display: flex;
-      animation: scrollGallery 2s linear infinite;
+      /* 200px width + 20px margin per image × 10 images × 2 (duplicated) = 4400px */
+      width: 4400px;
+      animation: scrollGallery 20s linear infinite;
     }
-
     .carousel-track img {
       width: 200px;
       height: 150px;
@@ -57,52 +47,50 @@
       border-radius: 8px;
       flex-shrink: 0;
     }
-
     @keyframes scrollGallery {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-2200px); }
+      /* 2200px = one full set of images, so the animation loops perfectly */
+    }
+    @media(max-width:600px) {
+      .carousel-track img { width: 120px; height: 90px; }
+      .carousel-track { width: 2640px; }
+      @keyframes scrollGallery {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-1320px); }
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- 🎉 Header Title -->
   <div class="section-header">గోల్డ్ ఫేజ్ సహకారులు</div>
-
-  <!-- 🔁 Image Carousel -->
   <div class="carousel-container">
     <div class="carousel-track" id="carousel">
-      <img src="https://images.pexels.com/photos/32848029/pexels-photo-32848029.jpeg" alt="Ganesh">
-      <img src="https://images.pexels.com/photos/220116/pexels-photo-220116.jpeg" alt="Flowers">
-      <img src="https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg" alt="Festival">
-      <img src="https://images.pexels.com/photos/1078958/pexels-photo-1078958.jpeg" alt="Lights">
+      <!-- 10 images, each appears twice for looping -->
+      <img src="images/Members/FW7A2333.JPG" alt="Ganesh">
+      <img src="images/Members/IMG_20230322_160416.jpg" alt="Flowers">
+      <img src="images/Members/Srikarr.heif" alt="Festival">
+      <img src="https://media.licdn.com/dms/image/v2/D5635AQGxiadw7WXkcA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1735200139503?e=1753635600&v=beta&t=f1BMl6ls_49BtsMPqnvzYFZuKshoxf-RHlpNmnpWH0M" alt="Lights">
       <img src="https://images.pexels.com/photos/1054651/pexels-photo-1054651.jpeg" alt="Statue">
       <img src="https://images.pexels.com/photos/32848029/pexels-photo-32848029.jpeg" alt="Ganesh">
       <img src="https://images.pexels.com/photos/220116/pexels-photo-220116.jpeg" alt="Flowers">
       <img src="https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg" alt="Festival">
       <img src="https://images.pexels.com/photos/1078958/pexels-photo-1078958.jpeg" alt="Lights">
       <img src="https://images.pexels.com/photos/1054651/pexels-photo-1054651.jpeg" alt="Statue">
+
+      <!-- duplicated for seamless infinite scroll -->
+      <img src="images/Members/FW7A2333.JPG" alt="Ganesh">
+      <img src="images/Members/IMG_20230322_160416.jpg" alt="Flowers">
+      <img src="images/Members/Srikarr.heif" alt="Festival">
+      <img src="https://media.licdn.com/dms/image/v2/D5635AQGxiadw7WXkcA/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1735200139503?e=1753635600&v=beta&t=f1BMl6ls_49BtsMPqnvzYFZuKshoxf-RHlpNmnpWH0M" alt="Lights">
+      <img src="https://images.pexels.com/photos/1054651/pexels-photo-1054651.jpeg" alt="Statue">
+      <img src="https://images.pexels.com/photos/32848029/pexels-photo-32848029.jpeg" alt="Ganesh">
+      <img src="https://images.pexels.com/photos/220116/pexels-photo-220116.jpeg" alt="Flowers">
+      <img src="https://images.pexels.com/photos/1643457/pexels-photo-1643457.jpeg" alt="Festival">
+      <img src="https://images.pexels.com/photos/1078958/pexels-photo-1078958.jpeg" alt="Lights">
+      <img src="https://images.pexels.com/photos/1054651/pexels-photo-1054651.jpeg" alt="Statue">
+
     </div>
   </div>
-
-
-
-  <script>
-    fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      });
-  </script>
-
-  <div id="whatsapp-placeholder"></div>
-  <script>
-    fetch('whatsapp.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('whatsapp-placeholder').innerHTML = data;
-      });
-  </script>
-
 </body>
 </html>
